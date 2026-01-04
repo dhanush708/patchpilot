@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="page-container">
+
+  <h1>About PatchPilot</h1>
+
+  <section>
+    <h2>Hi, I’m Dhanush 👋</h2>
+    <p>
+      I built PatchPilot to solve a recurring and expensive problem in Python
+      development pipelines: <strong>tests failing due to structural or import-related issues,
+      with no clear indication of whether a fix is safe to automate</strong>.
+    </p>
+  </section>
+
+  <section>
+    <h2>Problem Statement</h2>
+    <p>
+      In real-world Python repositories, CI pipelines frequently fail due to:
+    </p>
+    <ul>
+      <li>Incorrect import paths</li>
+      <li>Missing package initialization</li>
+      <li>Test discovery failures</li>
+      <li>Unsafe automated refactors</li>
+    </ul>
+    <p>
+      Blind auto-fixing is dangerous. Manual debugging is slow.
+      PatchPilot sits in between.
+    </p>
+  </section>
+
+  <section>
+    <h2>What PatchPilot Does</h2>
+    <ul>
+      <li>Runs <strong>pytest</strong> automatically</li>
+      <li>Analyzes failure patterns deterministically</li>
+      <li>Applies only <strong>safe, non-semantic fixes</strong></li>
+      <li>Stops immediately if a fix is ambiguous or risky</li>
+      <li>Never loops infinitely</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Why PatchPilot Stops</h2>
+    <p>
+      PatchPilot intentionally halts when:
+    </p>
+    <ul>
+      <li>A failure cannot be safely classified</li>
+      <li>Fixing would require architectural assumptions</li>
+      <li>Human intent is required</li>
+    </ul>
+    <p>
+      This is a <strong>design choice</strong>, not a limitation.
+    </p>
+  </section>
+
+  <section>
+    <h2>Limitations</h2>
+    <ul class="limitations">
+      <li>Python repositories only</li>
+      <li><strong>.zip uploads only</strong> (.rar blocked)</li>
+      <li>Pytest tests are required</li>
+      <li>No internet access during execution</li>
+      <li>Complex logic changes require human review</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Who This Is For</h2>
+    <p>
+      PatchPilot is designed for:
+    </p>
+    <ul>
+      <li>Backend engineers</li>
+      <li>CI/CD maintainers</li>
+      <li>Teams validating automated repair systems</li>
+    </ul>
+  </section>
+
+  <div class="nav-actions">
+    <a href="/" class="btn-secondary">← Back to Home</a>
+  </div>
+
+</div>
+{% endblock %}

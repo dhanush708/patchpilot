@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>Status: {{ result.status }}</h1>
+<p><strong>{{ result.summary }}</strong></p>
+
+<h2>Pytest Output</h2>
+<pre style="
+    background: #0d1117;
+    color: #c9d1d9;
+    padding: 16px;
+    border-radius: 8px;
+    overflow-x: auto;
+    max-height: 450px;
+    font-size: 14px;
+    line-height: 1.5;
+">
+{{ result.stdout }}
+</pre>
+
+{% if result.output_path %}
+<h2>Output Location</h2>
+<code>{{ result.output_path }}</code>
+{% endif %}
+
+<p style="margin-top:20px;">
+    <a href="/">← Run another repository</a>
+</p>
+
+{% endblock %}

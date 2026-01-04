@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="card shadow-sm">
+        <div class="card-body text-center py-5">
+            <h2 class="mb-4">
+                Analysis in Progress
+            </h2>
+
+            <p class="mb-1">
+                <strong>Job ID:</strong> {{ task_id }}
+            </p>
+            <p class="mb-2">
+                <strong>Current status:</strong> {{ status|upper }}
+            </p>
+
+            {% if message %}
+            <p class="text-muted mb-4">
+                {{ message }}
+            </p>
+            {% else %}
+            <p class="text-muted mb-4">
+                PatchPilot is cloning your project (or extracting the zip), running tests with
+                <code>pytest</code>, analyzing failures, and generating patch suggestions.
+            </p>
+            {% endif %}
+
+            <!-- Spinner -->
+            <div class="mb-4">
+                <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
+
+            <!-- Manual fallback button, just in case JS fails -->
+            <a href="{{ url_for('main.job_status', task_id=task_id) }}"
+               class="btn btn-primary">
+                Refresh Now
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- Auto-refresh every 2 seconds while this template is being served -->
+<script>
+    setTimeout(function () {
+        window.location.reload();
+    }, 2000);  // 2000 ms = 2 seconds
+</script>
+{% endblock %}

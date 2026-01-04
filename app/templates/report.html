@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="card">
+    <h2>Final Report</h2>
+
+    <div class="status {{ report.status }}">
+        <strong>Status:</strong> {{ report.status }}
+    </div>
+
+    <h3>Summary</h3>
+    <pre>{{ report.summary }}</pre>
+
+    <h3>Failure Details</h3>
+    <ul>
+        <li><strong>Test:</strong> {{ report.failure.test }}</li>
+        <li><strong>File:</strong> {{ report.failure.file }}</li>
+        <li><strong>Line:</strong> {{ report.failure.line }}</li>
+        <li><strong>Error:</strong> {{ report.failure.error }}</li>
+    </ul>
+
+    <h3>Code Context</h3>
+    <pre class="code">{{ report.failure.context }}</pre>
+
+    {% if report.patch %}
+    <h3>Applied Patch</h3>
+    <pre class="patch">{{ report.patch.diff }}</pre>
+    {% endif %}
+
+    <h3>Verification</h3>
+    <ul>
+        <li>Before Fix: {{ report.tests_before }}</li>
+        <li>After Fix: {{ report.tests_after }}</li>
+    </ul>
+
+    <h3>System Decision</h3>
+    <pre>{{ report.decision }}</pre>
+
+</section>
+
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>PatchPilot</h1>
+<p>Verification-driven auto-patching for Python repositories</p>
+
+<div class="card">
+    <h2>What PatchPilot Does</h2>
+    <ul>
+        <li>Runs pytest automatically</li>
+        <li>Applies safe deterministic fixes</li>
+        <li>Stops on unsafe or semantic changes</li>
+        <li>Never loops infinitely</li>
+    </ul>
+
+    <h2>Limitations</h2>
+    <ul class="danger">
+        <li>Python repositories only</li>
+        <li>.zip uploads only (.rar blocked)</li>
+        <li>pytest tests required</li>
+        <li>No internet during execution</li>
+        <li>Complex logic requires human fix</li>
+    </ul>
+
+    <form action="{{ url_for('run_patchpilot') }}" method="post" enctype="multipart/form-data">
+        <input type="file" name="repo" required>
+        <button type="submit">Run PatchPilot</button>
+    </form>
+
+    <p><a href="{{ url_for('about') }}">About this project</a></p>
+</div>
+
+<footer>Made by <b>Dhanush</b></footer>
+{% endblock %}
